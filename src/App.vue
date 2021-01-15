@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app"  class="container-fluid p-5">
+    <Form :options="form" :error="error" @data="formData = $event" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Form from './components/Form.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Form
+  },
+  data() {
+    return {
+      formData: [],
+      form: [{id: 0, placeholder: 'Telefone', type: 'text', icon: 'fa-phone', mask: '(##) #####-####' },
+             {id: 1, placeholder: 'Email', type: 'email', icon: 'fa-user'},
+             {id: 2, placeholder: 'Senha', type: 'password', icon: 'fa-lock'},
+             {id: 3, placeholder: 'Escolha...', type: 'select', selectOptions: [{value:'branco', label:'Branco'}, {value:'azul', label:'Azul'}]}
+      ],
+      error: false
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
